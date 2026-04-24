@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Kaustubh Dhalwalkar | ENTC 3D Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --c1:#38e8ff;
+  --c2:#2563eb;
+  --c3:#7c3aed;
+  --c4:#ec4899;
+  --bg:#020617;
+  --bg2:#050b1f;
+  --card:rgba(15,23,42,.72);
+  --line:rgba(148,163,184,.18);
+  --text:#f8fafc;
+  --muted:#9fb0cf;
+}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{
+  font-family:'Space Grotesk',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+  cursor:none;
+}
+.bg{
+  position:fixed;
+  inset:0;
+  z-index:-10;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 22% 18%,rgba(0,217,255,.11),transparent 30%),
+    radial-gradient(circle at 78% 20%,rgba(0,87,255,.12),transparent 34%),
+    radial-gradient(circle at 50% 100%,rgba(112,0,255,.10),transparent 35%),
+    linear-gradient(135deg,#030508 0%,#060a10 48%,#080d16 100%);
+}
+.bg:before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(0,217,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,217,255,.035) 1px,transparent 1px);
+  background-size:80px 80px;
+  opacity:.7;
+}
+.bg:after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(90deg,rgba(3,5,8,.95) 0%,rgba(3,5,8,.35) 45%,rgba(3,5,8,.95) 100%),
+    radial-gradient(circle at center,transparent 0%,rgba(0,0,0,.72) 82%);
+}
+.noise{
+  position:fixed;
+  inset:0;
+  z-index:-8;
+  opacity:.075;
+  pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+#particles{position:fixed;inset:0;z-index:-7}
+.cursor-orbit{
+  position:fixed;
+  left:0;
+  top:0;
+  width:118px;
+  height:118px;
+  pointer-events:none;
+  z-index:9999;
+  transform:translate(-50%,-50%);
+  mix-blend-mode:screen;
+}
+.cursor-core{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:9px;
+  height:9px;
+  transform:translate(-50%,-50%);
+  border-radius:50%;
+  background:var(--c1);
+  box-shadow:0 0 18px var(--c1),0 0 36px rgba(56,232,255,.45);
+}
+.orbit-icon{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:34px;
+  height:34px;
+  display:grid;
+  place-items:center;
+  border-radius:12px;
+  font-size:18px;
+  font-weight:900;
+  color:#e0faff;
+  background:rgba(15,23,42,.78);
+  border:1px solid rgba(56,232,255,.32);
+  box-shadow:0 0 22px rgba(56,232,255,.18),inset 0 1px 0 rgba(255,255,255,.1);
+  backdrop-filter:blur(12px);
+  animation:orbit 4.8s linear infinite;
+}
+.i1{--a:0deg}
+.i2{--a:60deg;animation-delay:-.8s}
+.i3{--a:120deg;animation-delay:-1.6s}
+.i4{--a:180deg;animation-delay:-2.4s}
+.i5{--a:240deg;animation-delay:-3.2s}
+.i6{--a:300deg;animation-delay:-4s}
+@keyframes orbit{
+  from{transform:rotate(var(--a)) translateX(48px) rotate(calc(-1*var(--a)))}
+  to{transform:rotate(calc(var(--a) + 360deg)) translateX(48px) rotate(calc(-1*(var(--a) + 360deg)))}
+}
+nav{
+  position:fixed;
+  top:18px;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(1180px,92%);
+  z-index:600;
+  padding:14px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(2,6,23,.68);
+  backdrop-filter:blur(24px);
+  border:1px solid var(--line);
+  border-radius:24px;
+  box-shadow:0 20px 80px rgba(0,0,0,.42);
+}
+.logo{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-family:'Outfit',sans-serif;
+  font-weight:900;
+}
+.logo-mark{
+  width:42px;
+  height:42px;
+  display:grid;
+  place-items:center;
+  border-radius:15px;
+  background:linear-gradient(135deg,var(--c1),var(--c3));
+  color:#020617;
+  box-shadow:0 0 28px rgba(56,232,255,.32);
+}
+.nav-links{display:flex;gap:26px;list-style:none}
+.nav-links a,.nav-cta{
+  color:#dbeafe;
+  text-decoration:none;
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  transition:.3s;
+}
+.nav-links a:hover{color:var(--c1)}
+.nav-cta{
+  padding:10px 16px;
+  border-radius:999px;
+  border:1px solid rgba(56,232,255,.3);
+  color:var(--c1);
+  background:rgba(56,232,255,.07);
+}
+.nav-cta:hover{
+  background:var(--c1);
+  color:#020617;
+  box-shadow:0 0 28px rgba(56,232,255,.25);
+}
+section{
+  width:min(1180px,92%);
+  margin:auto;
+  padding:108px 0;
+}
+.hero{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1.08fr .92fr;
+  gap:64px;
+  align-items:center;
+  padding-top:130px;
+  perspective:1400px;
+}
+.eyebrow{
+  display:inline-flex;
+  gap:10px;
+  align-items:center;
+  padding:10px 16px;
+  border-radius:999px;
+  border:1px solid rgba(56,232,255,.28);
+  background:rgba(15,23,42,.68);
+  color:#dffcff;
+  font-weight:800;
+  margin-bottom:24px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 0 35px rgba(56,232,255,.08);
+}
+.live{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--c1);
+  animation:blink 1.7s infinite;
+}
+@keyframes blink{
+  50%{opacity:.35;box-shadow:none}
+  100%,0%{box-shadow:0 0 9px var(--c1)}
+}
+h1{
+  font-family:'Outfit',sans-serif;
+  font-size:clamp(48px,7vw,92px);
+  line-height:.94;
+  letter-spacing:-3px;
+  margin-bottom:22px;
+}
+.grad{
+  background:linear-gradient(90deg,#fff,var(--c1),#c4b5fd);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.hero h2{
+  font-size:clamp(21px,3vw,31px);
+  line-height:1.25;
+  margin-bottom:18px;
+  color:#e2e8f0;
+}
+.hero p{
+  font-size:17px;
+  line-height:1.85;
+  color:var(--muted);
+  max-width:670px;
+  margin-bottom:28px;
+}
+.btns{
+  display:flex;
+  gap:16px;
+  flex-wrap:wrap;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:155px;
+  padding:14px 24px;
+  border-radius:999px;
+  border:1px solid rgba(148,163,184,.22);
+  background:rgba(15,23,42,.72);
+  color:#fff;
+  text-decoration:none;
+  font-weight:900;
+  transition:.35s;
+}
+.btn.primary{
+  border:0;
+  background:linear-gradient(135deg,var(--c1),var(--c2),var(--c3));
+  box-shadow:0 0 38px rgba(56,232,255,.24);
+}
+.btn:hover{
+  transform:translateY(-6px) scale(1.03);
+  box-shadow:0 0 38px rgba(56,232,255,.22);
+}
+.chips{
+  display:flex;
+  gap:9px;
+  flex-wrap:wrap;
+  margin-top:28px;
+}
+.chip{
+  padding:8px 13px;
+  border-radius:9px;
+  background:rgba(37,99,235,.11);
+  border:1px solid rgba(37,99,235,.22);
+  color:#91b5ff;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.04em;
+}
+.stage{
+  min-height:545px;
+  display:grid;
+  place-items:center;
+  position:relative;
+}
+.card3d{
+  position:relative;
+  width:min(430px,100%);
+  min-height:530px;
+  padding:28px;
+  border-radius:34px;
+  background:linear-gradient(150deg,rgba(15,23,42,.82),rgba(2,6,23,.74));
+  border:1px solid rgba(148,163,184,.2);
+  backdrop-filter:blur(24px);
+  box-shadow:0 45px 120px rgba(0,0,0,.58),inset 0 1px 0 rgba(255,255,255,.08);
+  transform-style:preserve-3d;
+  animation:float 5s ease-in-out infinite alternate;
+  overflow:hidden;
+}
+.card3d:before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(125deg,rgba(56,232,255,.18),transparent 35%,rgba(124,58,237,.16) 72%,transparent);
+}
+@keyframes float{
+  from{transform:rotateX(7deg) rotateY(-10deg) translateY(0)}
+  to{transform:rotateX(2deg) rotateY(8deg) translateY(-16px)}
+}
+.ring{
+  position:absolute;
+  inset:-52px;
+  border:1px solid rgba(56,232,255,.18);
+  border-top-color:rgba(56,232,255,.75);
+  border-radius:50%;
+  animation:spin 15s linear infinite;
+  z-index:-1;
+}
+.r2{
+  inset:-88px;
+  border-color:rgba(124,58,237,.13);
+  border-bottom-color:rgba(124,58,237,.72);
+  animation-duration:22s;
+  animation-direction:reverse;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.badge-open{
+  position:absolute;
+  right:24px;
+  top:20px;
+  z-index:3;
+  padding:7px 12px;
+  border-radius:999px;
+  background:linear-gradient(135deg,#00ff99,var(--c1));
+  color:#03101a;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.profile-frame{
+  width:170px;
+  height:170px;
+  margin:34px auto 22px;
+  border-radius:50%;
+  position:relative;
+  padding:5px;
+  background:conic-gradient(from 0deg,var(--c1),var(--c2),var(--c3),var(--c4),var(--c1));
+  box-shadow:0 0 45px rgba(56,232,255,.26);
+  transform:translateZ(75px);
+}
+@keyframes hue{to{filter:hue-rotate(360deg)}}
+.profile-frame img,.profile-placeholder{
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  border:4px solid #020617;
+  background:#0f172a;
+}
+.profile-frame img{
+  object-fit:cover;
+  display:block;
+}
+.profile-placeholder{
+  display:grid;
+  place-items:center;
+  text-align:center;
+  color:#dbeafe;
+  font-size:13px;
+  font-weight:900;
+  line-height:1.35;
+  padding:18px;
+  background:
+    linear-gradient(135deg,rgba(56,232,255,.22),rgba(124,58,237,.24)),
+    radial-gradient(circle at 50% 30%,rgba(255,255,255,.25),transparent 35%),
+    #0f172a;
+}
+.card3d h3,.role,.mini-grid{position:relative;z-index:2}
+.card3d h3{
+  text-align:center;
+  font-size:27px;
+  margin-bottom:8px;
+  transform:translateZ(55px);
+}
+.role{
+  text-align:center;
+  color:var(--c1);
+  font-weight:900;
+  margin-bottom:22px;
+  transform:translateZ(45px);
+}
+.mini-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  transform:translateZ(35px);
+}
+.mini{
+  padding:14px;
+  border-radius:18px;
+  background:rgba(2,6,23,.46);
+  border:1px solid rgba(148,163,184,.14);
+}
+.mini strong{
+  display:block;
+  font-size:20px;
+}
+.mini span{
+  font-size:13px;
+  color:var(--muted);
+}
+.float-box{
+  position:absolute;
+  z-index:4;
+  background:rgba(15,23,42,.82);
+  border:1px solid rgba(56,232,255,.22);
+  backdrop-filter:blur(18px);
+  border-radius:17px;
+  padding:14px 18px;
+  box-shadow:0 20px 60px rgba(0,0,0,.35);
+}
+.f1{top:42px;left:-18px;animation:f1 4s ease-in-out infinite}
+.f2{right:-18px;bottom:52px;animation:f2 5s ease-in-out infinite}
+.float-val{
+  font-family:'Outfit',sans-serif;
+  font-size:26px;
+  font-weight:900;
+  color:var(--c1);
+  line-height:1;
+}
+.float-lbl{
+  font-size:11px;
+  color:var(--muted);
+  font-weight:700;
+  margin-top:2px;
+}
+@keyframes f1{50%{transform:translateY(-12px)}}
+@keyframes f2{50%{transform:translateY(10px)}}
+.sec-label{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:12px;
+  color:var(--c1);
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+}
+.sec-label:before{
+  content:'';
+  width:26px;
+  height:2px;
+  border-radius:2px;
+  background:var(--c1);
+}
+.sec-title{
+  font-family:'Outfit',sans-serif;
+  font-size:clamp(34px,5vw,56px);
+  line-height:1;
+  letter-spacing:-2px;
+  margin-bottom:16px;
+}
+.sec-sub{
+  color:var(--muted);
+  line-height:1.75;
+  max-width:720px;
+  margin-bottom:56px;
+}
+.glass{
+  position:relative;
+  background:linear-gradient(160deg,rgba(15,23,42,.74),rgba(2,6,23,.62));
+  border:1px solid rgba(148,163,184,.18);
+  backdrop-filter:blur(22px);
+  border-radius:28px;
+  box-shadow:0 25px 85px rgba(0,0,0,.38),inset 0 1px 0 rgba(255,255,255,.05);
+  overflow:hidden;
+}
+.glass:before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg,rgba(255,255,255,.09),transparent 30%,transparent 70%,rgba(56,232,255,.07));
+  pointer-events:none;
+  opacity:.55;
+}
+.glass>*{position:relative;z-index:1}
+.about-grid{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:32px;
+}
+.about-card{padding:32px}
+.about-card p{
+  color:#c3d0ea;
+  line-height:1.8;
+  margin-bottom:14px;
+}
+.info-list{
+  display:grid;
+  gap:13px;
+  margin-top:20px;
+}
+.info-list div{
+  padding:13px 15px;
+  border-radius:16px;
+  background:rgba(2,6,23,.38);
+  border:1px solid rgba(148,163,184,.12);
+  color:#dbeafe;
+}
+.stats{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+}
+.stat{
+  padding:28px;
+  text-align:center;
+}
+.stat h3{
+  font-size:42px;
+  color:var(--c1);
+  text-shadow:0 0 20px rgba(56,232,255,.25);
+}
+.stat p{
+  color:var(--muted);
+  margin-top:6px;
+  font-weight:700;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+.skill,.project{
+  min-height:238px;
+  padding:28px;
+  transition:.35s;
+  transform-style:preserve-3d;
+}
+.skill:hover,.project:hover,.about-card:hover,.stat:hover,.timeline-item:hover{
+  transform:perspective(900px) rotateX(4deg) rotateY(-4deg) translateY(-10px);
+  border-color:rgba(56,232,255,.42);
+  box-shadow:0 0 55px rgba(56,232,255,.13),0 30px 90px rgba(0,0,0,.45);
+}
+.icon{
+  width:58px;
+  height:58px;
+  display:grid;
+  place-items:center;
+  border-radius:18px;
+  margin-bottom:18px;
+  background:linear-gradient(135deg,rgba(56,232,255,.16),rgba(124,58,237,.15));
+  border:1px solid rgba(56,232,255,.22);
+  font-size:28px;
+  box-shadow:0 0 25px rgba(56,232,255,.1);
+}
+.skill h3,.project h3,.timeline-item h3{
+  font-size:23px;
+  color:var(--c1);
+  margin-bottom:12px;
+}
+.skill p,.project p,.timeline-item p{
+  color:#c3d0ea;
+  line-height:1.75;
+}
+.tags{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:18px;
+}
+.tag{
+  padding:7px 11px;
+  border-radius:999px;
+  font-size:12px;
+  color:#e0faff;
+  border:1px solid rgba(56,232,255,.24);
+  background:rgba(56,232,255,.07);
+}
+.project.big{grid-column:span 2}
+.timeline{
+  display:grid;
+  gap:22px;
+  max-width:900px;
+}
+.timeline-item{
+  padding:26px 30px;
+  border-left:4px solid var(--c1);
+  transition:.35s;
+}
+.contact-card{
+  max-width:820px;
+  margin:auto;
+  padding:38px;
+  text-align:center;
+}
+.contact-card p{
+  color:#c3d0ea;
+  line-height:1.8;
+  font-size:17px;
+  margin-bottom:28px;
+}
+.contact-links{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:14px;
+}
+.contact-links a{
+  padding:13px 18px;
+  border-radius:16px;
+  background:rgba(15,23,42,.7);
+  border:1px solid rgba(148,163,184,.18);
+  color:#fff;
+  text-decoration:none;
+  transition:.3s;
+}
+.contact-links a:hover{
+  background:var(--c1);
+  color:#020617;
+  transform:translateY(-5px);
+  box-shadow:0 0 30px rgba(56,232,255,.25);
+}
+
+.education-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+}
+.edu-card{
+  padding:28px;
+  min-height:240px;
+  transition:.35s;
+  transform-style:preserve-3d;
+}
+.edu-card:hover{
+  transform:perspective(900px) rotateX(4deg) rotateY(-4deg) translateY(-10px);
+  border-color:rgba(56,232,255,.42);
+  box-shadow:0 0 55px rgba(56,232,255,.13),0 30px 90px rgba(0,0,0,.45);
+}
+.edu-year{
+  display:inline-flex;
+  padding:7px 12px;
+  border-radius:999px;
+  background:rgba(56,232,255,.08);
+  border:1px solid rgba(56,232,255,.22);
+  color:var(--c1);
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.08em;
+  margin-bottom:18px;
+}
+.edu-card h3{
+  font-size:24px;
+  color:var(--c1);
+  margin-bottom:12px;
+}
+.edu-card p{
+  color:#c3d0ea;
+  line-height:1.75;
+  margin-bottom:12px;
+}
+.edu-score{
+  margin-top:16px;
+  padding:14px 16px;
+  border-radius:16px;
+  background:rgba(2,6,23,.38);
+  border:1px solid rgba(148,163,184,.12);
+  color:#dbeafe;
+  font-weight:800;
+}
+@media(max-width:960px){
+  .education-grid{grid-template-columns:1fr}
+}
+
+footer{
+  width:min(1180px,92%);
+  margin:auto;
+  text-align:center;
+  padding:35px 0 45px;
+  color:#94a3b8;
+  border-top:1px solid rgba(148,163,184,.14);
+}
+.reveal,.reveal-left,.reveal-right{
+  opacity:0;
+  transition:.85s cubic-bezier(.22,1,.36,1);
+}
+.reveal{transform:translateY(46px)}
+.reveal-left{transform:translateX(-46px)}
+.reveal-right{transform:translateX(46px)}
+.on{opacity:1;transform:none}
+.skill,.project,.about-card,.stat,.timeline-item{isolation:isolate}
+@media(max-width:960px){
+  body{cursor:auto}
+  .cursor-orbit{display:none}
+  nav{padding:14px 22px}
+  .nav-links{display:none}
+  .hero{grid-template-columns:1fr;text-align:center}
+  .hero p{margin-left:auto;margin-right:auto}
+  .btns,.chips{justify-content:center}
+  .stage{min-height:470px}
+  .about-grid{grid-template-columns:1fr}
+  .grid{grid-template-columns:1fr 1fr}
+  .project.big{grid-column:span 2}
+}
+@media(max-width:620px){
+  section{padding:82px 0}
+  .grid,.stats{grid-template-columns:1fr}
+  .project.big{grid-column:span 1}
+  .mini-grid{grid-template-columns:1fr}
+  .card3d{min-height:auto}
+  .f1,.f2{display:none}
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+<div class="noise"></div>
+<canvas id="particles"></canvas>
+
+<div class="cursor-orbit" id="cursorOrbit">
+  <div class="cursor-core"></div>
+</div>
+
+<nav>
+  <div class="logo">
+    <div class="logo-mark">KD</div>
+    <span>Kaustubh   Shyamsundar   Dhalwalkar</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#journey">Journey</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Hire Me</a>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-left reveal-left">
+    <div class="eyebrow"><span class="live"></span>BTech ENTC · MIT AOE Pune</div>
+
+    <h1>
+      Kaustubh<br>
+      <span class="grad">Dhalwalkar</span><br>
+    </h1>
+
+    <h2>Embedded Systems Learner | Cybersecurity Enthusiast | Electronics Builder</h2>
+
+    <p>
+      I am a BTech Electronics & Telecommunication student at MIT Academy of Engineering.
+      I love building Arduino projects, IoT systems, cybersecurity labs, electronics circuits,
+      startup ideas, and premium digital experiences.
+    </p>
+
+    <div class="btns">
+      <a href="#projects" class="btn primary">View Projects ↓</a>
+      <a href="#contact" class="btn">Contact Me ↗</a>
+    </div>
+
+    <div class="chips">
+      <span class="chip">Arduino</span>
+      <span class="chip">ESP8266</span>
+      <span class="chip">C</span>
+      <span class="chip">Python</span>
+      <span class="chip">Kali Linux</span>
+      <span class="chip">IoT</span>
+      <span class="chip">Digital Electronics</span>
+    </div>
+  </div>
+
+  <div class="stage reveal-right">
+
+    <div class="card3d" id="card3d">
+      <div class="ring"></div>
+      <div class="ring r2"></div>
+      <div class="badge-open">Open to Learn</div>
+
+      <div class="profile-frame">
+        <!-- To add your photo:
+             1. Put your image in same folder as index.html
+             2. Rename it to profile.jpg
+             3. Remove the placeholder div below
+             4. Uncomment this image line:
+             <img src="profile.jpg" alt="Kaustubh Dhalwalkar Profile Photo">
+        -->
+        <img src="pp.jpeg" alt="Kaustubh Profile Photo">
+      </div>
+
+      <h3>Kaustubh S. Dhalwalkar</h3>
+      <div class="role">Future Embedded Systems Engineer</div>
+
+      <div class="mini-grid">
+        <div class="mini"><strong>ENTC</strong><span>BTech Student</span></div>
+        
+        <div class="mini"><strong>C / Python</strong><span>Programming</span></div>
+        <div class="mini"><strong>Arduino</strong><span>Hardware Projects</span></div>
+        <div class="mini"><strong>Kali</strong><span>Cybersecurity Labs</span></div>
+        <div class="mini"><strong>IoT</strong><span>ESP8266 + Sensors</span></div>
+      </div>
+    </div>
+
+    <div class="float-box f2">
+      <div class="float-val">10+</div>
+      <div class="float-lbl">Project Ideas</div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="sec-label reveal">Who I Am</div>
+  <h2 class="sec-title reveal">Building the <span class="grad">Future</span> of Electronics.</h2>
+  <p class="sec-sub reveal">A practical learner who loves building real hardware, writing code, and turning ideas into working projects.</p>
+
+  <div class="about-grid">
+    <div class="about-card glass reveal-left">
+      <h3>About Me</h3>
+      <p>
+        My name is Kaustubh Shyamsundar Dhalwalkar. I am studying BTech in Electronics &
+        Telecommunication Engineering at MIT Academy of Engineering. My main goal is to become
+        skilled in embedded systems engineering and cybersecurity.
+      </p>
+      <p>
+        I enjoy working at the intersection of hardware and software: sensors, microcontrollers,
+        displays, circuits, networking, Linux, and modern web design.
+      </p>
+
+      <div class="info-list">
+        <div><b>College:</b> MIT Academy of Engineering</div>
+        <div><b>Branch:</b> Electronics & Telecommunication</div>
+        <div><b>Current CGPA:</b> 7.21</div>
+        <div><b>Location:</b> Pune / Alandi side</div>
+      </div>
+    </div>
+
+    <div class="stats reveal-right">
+      <div class="stat glass"><h3>7.21</h3><p>Current CGPA</p></div>
+      <div class="stat glass"><h3>4+</h3><p>Core Tech Areas</p></div>
+      <div class="stat glass"><h3>10+</h3><p>Projects / Ideas</p></div>
+      <div class="stat glass"><h3>800</h3><p>Battery Cycle Logic</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="sec-label reveal">Capabilities</div>
+  <h2 class="sec-title reveal">Technical <span class="grad">Skills</span></h2>
+  <p class="sec-sub reveal">Skills I am learning and applying through practical electronics, coding, cybersecurity, and web projects.</p>
+
+  <div class="grid">
+    <div class="skill glass reveal">
+      <div class="icon">💻</div>
+      <h3>C Programming</h3>
+      <p>Input/output, conditions, loops, arrays, functions, logic building and embedded-style problem solving.</p>
+      <div class="tags"><span class="tag">C</span><span class="tag">Logic</span><span class="tag">Embedded</span></div>
+    </div>
+
+    <div class="skill glass reveal">
+      <div class="icon">🔧</div>
+      <h3>Embedded Systems</h3>
+      <p>Arduino Uno, sensors, motors, LCD/OLED display, buzzer alerts, battery monitoring and hardware control.</p>
+      <div class="tags"><span class="tag">Arduino</span><span class="tag">Sensors</span><span class="tag">LCD</span></div>
+    </div>
+
+    <div class="skill glass reveal">
+      <div class="icon">📡</div>
+      <h3>IoT & ESP8266</h3>
+      <p>Wi-Fi based projects, Google Sheets logging, OLED display systems and sensor data monitoring.</p>
+      <div class="tags"><span class="tag">ESP8266</span><span class="tag">IoT</span><span class="tag">Sheets</span></div>
+    </div>
+
+    <div class="skill glass reveal">
+      <div class="icon">🛡️</div>
+      <h3>Cybersecurity</h3>
+      <p>Networking fundamentals, OSI model, DNS, HTTP/HTTPS, MAC, ARP, Kali Linux and ethical hacking labs.</p>
+      <div class="tags"><span class="tag">Kali</span><span class="tag">Networking</span><span class="tag">Linux</span></div>
+    </div>
+
+    <div class="skill glass reveal">
+      <div class="icon">⚙️</div>
+      <h3>Electronics</h3>
+      <p>Digital electronics, Tinkercad simulation, sensors, circuit debugging, push buttons, buzzers and modules.</p>
+      <div class="tags"><span class="tag">Digital</span><span class="tag">Circuits</span><span class="tag">Tinkercad</span></div>
+    </div>
+
+    <div class="skill glass reveal">
+      <div class="icon">🚀</div>
+      <h3>Startup Thinking</h3>
+      <p>PROJECT HUB, 3Dify, campus ideas, AI tool website concepts, branding, logo and product planning.</p>
+      <div class="tags"><span class="tag">PROJECT HUB</span><span class="tag">3Dify</span><span class="tag">Branding</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="sec-label reveal">Portfolio Work</div>
+  <h2 class="sec-title reveal">Project <span class="grad">Showcase</span></h2>
+  <p class="sec-sub reveal">Projects and concepts based on my electronics, embedded systems, IoT, cybersecurity, and startup learning.</p>
+
+  <div class="grid">
+    <div class="project glass big reveal">
+      <div class="icon">🔋</div>
+      <h3>Smart Battery Monitoring System</h3>
+      <p>Arduino battery monitor with percentage display, estimated km range, charging cycle count, 30% buzzer alert, LCD output and battery removed warning.</p>
+      <div class="tags"><span class="tag">Arduino</span><span class="tag">ACS712</span><span class="tag">LCD</span><span class="tag">Buzzer</span></div>
+    </div>
+
+    <div class="project glass reveal">
+      <div class="icon">🧬</div>
+      <h3>Fingerprint Attendance System</h3>
+      <p>R307 fingerprint sensor with ESP8266 and OLED display to send attendance name, time and status to Google Sheets.</p>
+      <div class="tags"><span class="tag">ESP8266</span><span class="tag">R307</span><span class="tag">OLED</span></div>
+    </div>
+
+    <div class="project glass reveal">
+      <div class="icon">🚗</div>
+      <h3>Ultrasonic Motor Safety</h3>
+      <p>Object detection system where motor stops when an obstacle comes close and starts again when object moves away.</p>
+      <div class="tags"><span class="tag">Ultrasonic</span><span class="tag">Motor</span><span class="tag">Automation</span></div>
+    </div>
+
+    <div class="project glass reveal">
+      <div class="icon">🧠</div>
+      <h3>Cybersecurity Learning Lab</h3>
+      <p>Kali Linux and VirtualBox lab for learning protocols, DNS, ARP, MAC address, web basics and networking practice.</p>
+      <div class="tags"><span class="tag">Kali</span><span class="tag">VirtualBox</span><span class="tag">Network</span></div>
+    </div>
+
+    <div class="project glass reveal">
+      <div class="icon">🛠️</div>
+      <h3>PROJECT HUB</h3>
+      <p>College project kit idea for ready kits, custom project making, circuit debugging, soldering help and components.</p>
+      <div class="tags"><span class="tag">Startup</span><span class="tag">Students</span><span class="tag">Projects</span></div>
+    </div>
+
+    <div class="project glass reveal">
+      <div class="icon">🧊</div>
+      <h3>3Dify</h3>
+      <p>3D product design concept focused on keychains, stands, desk products, student products and design-first business building.</p>
+      <div class="tags"><span class="tag">3D Design</span><span class="tag">Product</span><span class="tag">Business</span></div>
+    </div>
+  </div>
+</section>
+
+
+<section id="education">
+  <div class="sec-label reveal">Academic Background</div>
+  <h2 class="sec-title reveal">My <span class="grad">Education</span></h2>
+  <p class="sec-sub reveal">My academic journey from school to engineering, showing my foundation in science, mathematics, and technology.</p>
+
+  <div class="education-grid">
+    <div class="edu-card glass reveal">
+      <div class="edu-year">10th Standard</div>
+      <h3>SSC</h3>
+      <p>Completed 10th standard under Maharashtra State Board with strong academic performance and interest in science and mathematics.</p>
+      <div class="edu-score">SSC: 91.81%</div>
+    </div>
+
+    <div class="edu-card glass reveal">
+      <div class="edu-year">12th Standard</div>
+      <h3>HSC Science</h3>
+      <p>Completed 12th standard in the Science stream with Physics, Chemistry, and Mathematics as core subjects.</p>
+      <div class="edu-score">HSC: 57%<br>JEE Mains: 81.37 percentile<br>MHT-CET: 95.33 percentile</div>
+    </div>
+
+    <div class="edu-card glass reveal">
+      <div class="edu-year">Current</div>
+      <h3>BTech ENTC</h3>
+      <p>Currently pursuing BTech in Electronics & Telecommunication Engineering at MIT Academy of Engineering.</p>
+      <div class="edu-score">Current CGPA: 7.21</div>
+    </div>
+  </div>
+</section>
+
+<section id="journey">
+  <div class="sec-label reveal">Roadmap</div>
+  <h2 class="sec-title reveal">Learning <span class="grad">Journey</span></h2>
+  <p class="sec-sub reveal">My focused path toward becoming a strong embedded systems engineer with cybersecurity knowledge.</p>
+
+  <div class="timeline">
+    <div class="timeline-item glass reveal">
+      <h3>01 — Strong C Programming Base</h3>
+      <p>Building logic using conditions, loops, arrays, functions, pointers and embedded-style problem statements.</p>
+    </div>
+
+    <div class="timeline-item glass reveal">
+      <h3>02 — Digital Electronics</h3>
+      <p>Learning number systems, logic gates, flip-flops, counters, registers, multiplexers and practical circuit behavior.</p>
+    </div>
+
+    <div class="timeline-item glass reveal">
+      <h3>03 — Arduino + Sensors</h3>
+      <p>Creating mini projects using sensors, displays, motors, buzzers, relays and serial communication.</p>
+    </div>
+
+    <div class="timeline-item glass reveal">
+      <h3>04 — IoT and ESP8266</h3>
+      <p>Connecting hardware projects to Wi-Fi, web apps, Google Sheets and online dashboards.</p>
+    </div>
+
+    <div class="timeline-item glass reveal">
+      <h3>05 — Cybersecurity Skills</h3>
+      <p>Practicing networking, Linux, web security basics and ethical hacking in safe lab environments.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="sec-label reveal">Contact</div>
+  <h2 class="sec-title reveal">Let's <span class="grad">Connect</span></h2>
+  <p class="sec-sub reveal">All buttons below are working. Replace the links in JavaScript with your real accounts.</p>
+
+  <div class="contact-card glass reveal">
+    <p>
+      I am open to project collaboration, electronics ideas, embedded systems learning,
+      cybersecurity practice, startup ideas and portfolio improvement.
+    </p>
+
+    <div class="contact-links">
+      <a id="emailLink" href="#">Email</a>
+      <a id="linkedinLink" href="#" target="_blank">LinkedIn</a>
+      <a id="githubLink" href="#" target="_blank">GitHub</a>
+      <a id="instagramLink" href="#" target="_blank">Instagram</a>
+      <a id="resumeLink" href="kaustubh_resume.pdf" download>Resume</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Kaustubh Shyamsundar Dhalwalkar | Premium ENTC 3D Portfolio
+</footer>
+
+<script>
+/* ==============================
+   CHANGE YOUR REAL LINKS HERE
+   ============================== */
+
+const PROFILE_LINKS = {
+  email: "mailto:yourmail@example.com",
+  linkedin: "https://www.linkedin.com/",
+  github: "https://github.com/",
+  instagram: "https://www.instagram.com/",
+  resume: "kaustubh_resume.pdf"
+};
+
+/* Link setup */
+document.getElementById("emailLink").href = PROFILE_LINKS.email;
+document.getElementById("linkedinLink").href = PROFILE_LINKS.linkedin;
+document.getElementById("githubLink").href = PROFILE_LINKS.github;
+document.getElementById("instagramLink").href = PROFILE_LINKS.instagram;
+document.getElementById("resumeLink").href = PROFILE_LINKS.resume;
+
+/* Background particles */
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+let w, h, pts;
+
+function setup(){
+  w = canvas.width = innerWidth;
+  h = canvas.height = innerHeight;
+  pts = [];
+  for(let i = 0; i < 95; i++){
+    pts.push({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      vx: (Math.random() - .5) * .35,
+      vy: (Math.random() - .5) * .35,
+      r: Math.random() * 1.6 + .6
+    });
+  }
+}
+
+function draw(){
+  ctx.clearRect(0,0,w,h);
+
+  pts.forEach((p,i)=>{
+    p.x += p.vx;
+    p.y += p.vy;
+
+    if(p.x < 0 || p.x > w) p.vx *= -1;
+    if(p.y < 0 || p.y > h) p.vy *= -1;
+
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle = "rgba(0,217,255,.55)";
+    ctx.fill();
+
+    for(let j = i + 1; j < pts.length; j++){
+      const q = pts[j];
+      const dx = p.x - q.x;
+      const dy = p.y - q.y;
+      const d = Math.hypot(dx,dy);
+
+      if(d < 125){
+        ctx.beginPath();
+        ctx.moveTo(p.x,p.y);
+        ctx.lineTo(q.x,q.y);
+        ctx.strokeStyle = `rgba(0,87,255,${.09 * (1 - d / 125)})`;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+    }
+  });
+
+  requestAnimationFrame(draw);
+}
+
+setup();
+draw();
+addEventListener("resize", setup);
+
+/* ENTC cursor orbit */
+const orbit = document.getElementById("cursorOrbit");
+let mx = innerWidth / 2;
+let my = innerHeight / 2;
+let ox = mx;
+let oy = my;
+
+document.addEventListener("mousemove", e => {
+  mx = e.clientX;
+  my = e.clientY;
+});
+
+function cursorAnimation(){
+  ox += (mx - ox) * .16;
+  oy += (my - oy) * .16;
+
+  if(orbit){
+    orbit.style.left = ox + "px";
+    orbit.style.top = oy + "px";
+  }
+
+  requestAnimationFrame(cursorAnimation);
+}
+
+cursorAnimation();
+
+/* Main 3D card tilt */
+const card = document.getElementById("card3d");
+
+if(card){
+  card.addEventListener("mousemove", e => {
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - .5;
+    const y = (e.clientY - r.top) / r.height - .5;
+    card.style.transform = `rotateY(${x * 18}deg) rotateX(${-y * 12}deg) scale(1.02)`;
+  });
+
+  card.addEventListener("mouseleave", () => {
+    card.style.transform = "";
+  });
+}
+
+/* Small card tilt */
+document.querySelectorAll(".glass, .skill, .project").forEach(c => {
+  c.addEventListener("mousemove", e => {
+    const r = c.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - .5;
+    const y = (e.clientY - r.top) / r.height - .5;
+    c.style.transform = `perspective(900px) rotateX(${-y * 5}deg) rotateY(${x * 5}deg) translateY(-8px)`;
+  });
+
+  c.addEventListener("mouseleave", () => {
+    c.style.transform = "";
+  });
+});
+
+/* Reveal animation */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add("on");
+      obs.unobserve(entry.target);
+    }
+  });
+},{
+  threshold:.1,
+  rootMargin:"0px 0px -50px 0px"
+});
+
+document.querySelectorAll(".reveal, .reveal-left, .reveal-right").forEach(el => obs.observe(el));
+
+/* Smooth internal links */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener("click", e => {
+    const id = a.getAttribute("href");
+    const target = document.querySelector(id);
+
+    if(target){
+      e.preventDefault();
+      target.scrollIntoView({behavior:"smooth"});
+    }
+  });
+});
+</script>
+
+</body>
+</html>
